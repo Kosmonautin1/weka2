@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kling, Türchen, Kling</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #001f3f, #00102f);
+            color: #fff;
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            color: gold;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .door {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+        .door img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            backface-visibility: hidden;
+            transform-origin: left;
+            transform: rotateY(0);
+            transition: transform 1s;
+        }
+        .door.open img {
+            transform: rotateY(-180deg);
+        }
+        .door-number {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 30%;
+            padding-top: 30%;
+            background-color: rgba(255, 215, 0, 0.9);
+            border-radius: 50%;
+            color: #000;
+            font-size: 1.5em;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from {
+                transform: translateY(-100vh);
+            }
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Kling, Türchen, Kling</h1>
+    <div class="calendar">
+        <!-- Türchen werden hier dynamisch erstellt -->
+    </div>
+
+    <!-- Schnee-Effekt -->
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            snowflake.innerHTML = '❄';
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => snowflake.remove(), 5000);
+        }
+
+        setInterval(createSnowflake, 100);
+
+        // Generiere die Türchen
+        const links = [
+            "https://open.spotify.com/intl-de/track/0KixIFbJPLjVUgCiTgR649?si=8bb020bbe9624071",
+            "https://open.spotify.com/intl-de/track/1SlLAhzhROPjgxo5I84Y3v?si=059cd53da8b1438d",
+            "https://open.spotify.com/intl-de/track/70mpYOq7kaEVOZD6IIJAaw?si=dcf52ca9c52d411f",
+            "https://open.spotify.com/intl-de/track/0hB0XV8kDWxFCgLpgGYjUK?si=1e259ab3819946e8",
+            "https://open.spotify.com/intl-de/track/6sfpQ3PowHOOawhBhzv72L?si=3afde16805294f95",
+            "https://open.spotify.com/intl-de/track/2lUoGpO16ZHBtIpk5jRU9P?si=c94423911527401b",
+            "https://open.spotify.com/intl-de/track/5IXCxbn1VkQVsspYLmjalR?si=f29c146d3f8645fc",
+            "https://open.spotify.com/intl-de/track/2YvGLm7HGIRwzH1pgQDmRP?si=0c0b735e55fb4310",
+            "https://open.spotify.com/intl-de/track/0HGYSztjFbto3e3YVM00VF?si=cb675699494a4b0b",
+            "https://open.spotify.com/intl-de/track/1zTdYKQ1lQ1asG2GO5MoDP?si=2b59e88ce1794db4",
+            "https://open.spotify.com/intl-de/track/31OJj7LthTNCbHjY7cwIO0?si=3cddff75cb284531",
+            "https://open.spotify.com/intl-de/track/6M9YQgGRnoGS8T92YPBXtu?si=c3102943da094beb",
+            "https://open.spotify.com/intl-de/track/3ln5s4LFL2hRnpTCddKEST?si=b0d8f541d530416d",
+            "https://open.spotify.com/intl-de/track/0di7hMT6o1ogeUN1XDB9Ft?si=53b821d209594225",
+            "https://open.spotify.com/intl-de/track/5ixkYrtOrTiHaKtIPFEsNn?si=b5bdb5a0902b450a",
+            "https://open.spotify.com/intl-de/track/6y8ptSvYTlhjzhnZKmEf5z?si=9214c6d3066a402c",
+            "https://open.spotify.com/intl-de/track/55ROr3cl3yi4YRBgfpDy1d?si=2c93e7a3dde1479f",
+            "https://open.spotify.com/intl-de/track/2Sqkq7t32rm1pu1BWGZq4y?si=b254b3aef7634ed8",
+            "https://open.spotify.com/intl-de/track/6QyHc5oeWkChwtaRUEwWBG?si=57675d23346b4bd1",
+            "https://open.spotify.com/intl-de/track/1QpybTT7CadO6tsUBnoukv?si=d39398c6364e4999",
+            "https://open.spotify.com/intl-de/track/2ucFCqazVVhPKHDoaR73t8?si=c36780ebfaee4f2a",
+            "https://open.spotify.com/intl-de/track/4wX6YrycYmPJLQlXwL3tM3?si=9c61609312174031",
+            "https://open.spotify.com/intl-de/track/0ANuON3945UbGRTEJIKHi1?si=5a46155adc7b4734",
+            "https://open.spotify.com/intl-de/track/1PHjSTM8ArbZtQ2fnQkIZT?si=537212bcfca94dda"
+        ];
+
+        const calendar = document.querySelector('.calendar');
+        links.forEach((link, index) => {
+            const door = document.createElement('div');
+            door.classList.add('door');
+            door.innerHTML = `
+                <div class="door-number">${index + 1}</div>
+                <img src="door_image.png" alt="Türchen">
+            `;
+            door.addEventListener('click', () => {
+                door.classList.add('open');
+                setTimeout(() => {
+                    window.location.href = link;
+                }, 1000);
+            });
+            calendar.appendChild(door);
+        });
+    </script>
+</body>
+</html>
